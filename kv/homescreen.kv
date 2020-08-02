@@ -1,0 +1,38 @@
+
+#:import utils kivy.utils
+
+
+<HomeScreen>:
+
+    FloatLayout:
+
+        ImageButton:
+            pos_hint:{'top':.9 , 'right':.7}
+            size_hint:(1,.1)
+            source: "icons/add.png"
+
+            on_release:
+                app.change_screen("add_workout_screen")
+        Label:
+            pos_hint:{'top':.9 , 'left':1}
+            size_hint:(1,.1)
+
+            id: streak_label
+
+        ScrollView:         #Banner grid
+
+            pos_hint:{'top':.8 , 'left':1}
+            size_hint:(1,.7)
+            GridLayout:
+
+                size_hint_y:None
+                height: self.minimum_height
+                row_default_height:'100dp'
+                row_force_default:True
+
+                id: banner_grid
+                spacing:10
+                cols:3
+
+
+
