@@ -1,0 +1,108 @@
+#:include kv/homescreen.kv
+#:include kv/settingsscreen.kv
+#:include kv/changeavatarscreen.kv
+#:include kv/loginscreen.kv
+#:import utils kivy.utils
+#:include kv/addfriendscreen.kv
+#:include kv/addworkoutscreen.kv
+#:include kv/friendslistscreen.kv
+
+GridLayout:
+    cols: 1
+    canvas:
+        Color:
+            rgb: utils.get_color_from_hex("#35477d")
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    FloatLayout:
+        ScreenManager:
+            size_hint: 1, 0.699
+            pos_hint: {"top": .799, "left": 1}
+            id: screen_manager
+            HomeScreen:
+                name: "home_screen"
+                id: home_screen
+            SettingsScreen:
+                name: "settings_screen"
+                id: settings_screen
+            ChangeAvatarScreen:
+                name: "change_avatar_screen"
+                id: change_avatar_screen
+            LoginScreen:
+                name: "login_screen"
+                id: login_screen
+
+            AddFriendScreen:
+                name: "add_friend_screen"
+                id :add_friend_screen
+
+            AddWorkoutScreen:
+                name: "add_workout_screen"
+                id : add_workout_screen
+            FriendsListScreen:
+                name : "friends_list_screen"
+
+
+        FloatLayout:
+        #main avatarrs
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#B035DE")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+            pos_hint:{'top':1 , 'left':1}
+            size_hint:(1,.25)
+            Image:
+                size_hint_y:.5
+                size_hint_x:.5
+                pos_hint:{'top':1,'right':.6}
+                source: "icons/back.png"
+            Image:
+                size_hint:.5,.5
+                pos_hint:{'top':1,'right':1}
+                source: "icons/workouts/boxing.png"
+
+            Image:
+                source: "icons/man.png"
+                id: avatar_image
+                size_hint:0.5,.8
+                pos_hint:{'top':.8,'right':0.75}
+
+        GridLayout:
+        #menu button
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#B035DE")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            rows:1
+
+            pos_hint:{'top':.12 , 'left':1}
+            size_hint:(1,.12)
+            ImageButton:
+                source: "icons/time.png"
+                on_release:
+                    app.change_screen("login_screen")
+                    print("ADD any thing ")
+
+            ImageButton:
+                source: "icons/add.png"
+                on_press:
+                    self.source =  "icons/distance.png"
+                on_release:
+                    self.source =  "icons/add.png"
+                    app.change_screen("home_screen")
+                    print("oOoOoh agfhgfk ")
+            ImageButton:
+                source: "icons/settings.png"
+                on_release:
+                    app.change_screen("settings_screen")
+
+
+
+
+
